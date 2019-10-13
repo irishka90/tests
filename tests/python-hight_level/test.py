@@ -1,31 +1,18 @@
-q = int(input())
-map = {}
-for i in range(q):
-    buffer = input()
-    if ":" in buffer:
-        f, s = buffer.split(":")
-    else:
-        f = buffer
-        s = "object"
-    f = f.strip()
-    s = s.strip().split()
+import os
 
-    map[f] = s
+map = []
 
-    for key, value in map.items():
-        for it in s:
-            if it == key:
-                s+=map[it]
+for current_dir, dirs, files in os.walk("main"):
+    if len(files) != 0:
+        for it in files:
+            if len(it) < 4 or it[-3:] != ".py":
+                continue
+            else:
+                if current_dir not in map:
+                    map.append(current_dir)
 
-
-q = int(input())
-for i in range(q):
-    f, s = input().split()
-    if s == f:
-        print("Yes")
-    if f in map[s]:
-        print("Yes")
-    else:
-        print("No")
-
-print(map)
+    # print(current_dir, dirs, files)
+map.sort()
+with open("out.txt", "w") as file:
+    for item in map:
+        file.write("%s\n" % item)

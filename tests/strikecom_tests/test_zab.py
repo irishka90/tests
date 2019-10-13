@@ -13,13 +13,13 @@ def browser():
     browser.quit()
 
 
-@pytest.fixture(scope="class")
+@pytest.fixture(scope="function")
 def open_main(browser):
     browser.get(link)
     time.sleep(5)
 
 
-@pytest.fixture(scope="class")
+@pytest.fixture(scope="function")
 def base_tab_news(browser):
     news = browser.find_element_by_xpath("/html/body/div/section/header/div/div[2]/ul/li[2]")
     news.click()
