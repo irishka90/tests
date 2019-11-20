@@ -6,6 +6,9 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 
 class TestSearch(unittest.TestCase):
+
+
+
     def test_search_google(self):
         link = "https://www.google.com"
         browser = webdriver.Chrome()
