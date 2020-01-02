@@ -4,6 +4,7 @@ from selenium import webdriver
 
 
 class TestZabast(unittest.TestCase):
+
     def test_news(self):
         link = "https://strikeapi.herokuapp.com"
         browser = webdriver.Chrome()
