@@ -1,12 +1,14 @@
+import datetime
 import time
+
 from selenium.common.exceptions import NoSuchElementException
+
 from tests.zabast_admin.locators import BasePageLocators
 
 link = "http://104.248.35.86/moderation/#/login"
 
 
 class BasePage():
-
 
     def __init__(self, browser, link, timeout=10):
         self.browser = browser
@@ -67,16 +69,42 @@ class BasePage():
         button_submit.click()
         time.sleep(7)
 
-    def sort_creating_date (self):
-        assert self.is_element_present(*BasePageLocators.DATE_SORTING)
-        sort =  self.browser.find_element(*BasePageLocators.DATE_SORTING)
-        sort.click()
+    def sort_creating_date(self):
+        assert self.is_element_present(*BasePageLocators.DATA_TABLE_SORTING)
+        table = self.browser.find_element(*BasePageLocators.DATA_TABLE_SORTING) \
+            .find_elements_by_class_name("baseTable__row")
+        assert len(table) > 0, "No events or news"
+
+        assert self.is_element_present(*BasePageLocators.DATE_SORTING), "No sort element"
+
         sort = self.browser.find_element(*BasePageLocators.DATE_SORTING)
         sort.click()
+        assert self.is_element_present(*BasePageLocators.DATE_SORTING_ASC), "No ASC mode"
+        self.check_asc_desc(mode=True)
+
+        sort = self.browser.find_element(*BasePageLocators.DATE_SORTING)
+        sort.click()
+        assert self.is_element_present(*BasePageLocators.DATE_SORTING_DESC), "No DESC mode"
+        self.check_asc_desc(mode=False)
+
         time.sleep(3)
 
+    def check_asc_desc(self, mode):
+        table = self.browser.find_element(*BasePageLocators.DATA_TABLE_SORTING) \
+            .find_elements_by_class_name("baseTable__row")
+
+        first = table[0].find_elements_by_class_name("baseTable__cell")[2].find_element_by_tag_name("span").text
+        second = table[1].find_elements_by_class_name("baseTable__cell")[2].find_element_by_tag_name("span").text
+        timeFirst = time.mktime(datetime.datetime.strptime(first, "%d-%m-%Y %H:%M").timetuple())
+        timeSecond = time.mktime(datetime.datetime.strptime(second, "%d-%m-%Y %H:%M").timetuple())
+
+        if mode:
+            assert timeFirst <= timeSecond, "No sort ASC mode"
+        else:
+            assert timeFirst >= timeSecond, "No sort DESC mode"
+
     def delete_last_news(self):
-        assert  self.is_element_present(*BasePageLocators.DROP_DOWN)
+        assert self.is_element_present(*BasePageLocators.DROP_DOWN)
         drop_down = self.browser.find_element(*BasePageLocators.DROP_DOWN)
         drop_down.click()
         assert self.is_element_present(*BasePageLocators.DELETE_NEWS)
@@ -98,5 +126,3 @@ class BasePage():
         del_news_ok = self.browser.find_element(*BasePageLocators.TAKE_AWAY_OK)
         del_news_ok.click()
         time.sleep(8)
-
-

@@ -2,7 +2,6 @@ import time
 import pytest
 from selenium import webdriver
 
-
 from tests.zabast_admin.base_page import BasePage, link
 from tests.zabast_admin.event_page import EventPage
 from tests.zabast_admin.news_page import NewsPage
@@ -69,7 +68,7 @@ class TestLoginFrom():
         page.change_page()
         time.sleep(2)
 
-    def test_sorting(self,browser):
+    def test_sorting(self, browser):
         page = BasePage(browser, link)
         page.open()
         page.should_be_login_form()

@@ -80,20 +80,22 @@ class NewsPage(BasePage):
 
         assert self.is_element_present(*NewsPageLocators.SOURSE_LINK), "LINK area is not presented"
         link_area = self.browser.find_element(*NewsPageLocators.SOURSE_LINK)
-        link_area.send_keys("https://strikeapi2.herokuapp.com/")
+        link_area.send_keys(TextFields.url_source)
         time.sleep(2)
 
         assert self.is_element_present(*NewsPageLocators.TAG), "Tag area is not presented"
         tag_area = self.browser.find_element(*NewsPageLocators.TAG)
-        tag_area.send_keys("Lorem")
+        tag_area.send_keys(TextFields.tag_1)
         tag_area.send_keys(Keys.RETURN)
-        tag_area.send_keys("Ipsum")
+        tag_area.send_keys(TextFields.tag_2)
         tag_area.send_keys(Keys.RETURN)
         time.sleep(3)
 
         assert self.is_element_present(*NewsPageLocators.PHOTO_URL), "photo area is not presented"
         photo = self.browser.find_element(*NewsPageLocators.PHOTO_URL)
-        photo.send_keys("http://www.xa-xa.org/uploads/posts/2009-05/1241337560_238965_235963.jpg")
+        photo.send_keys(TextFields.image)
+        photo.send_keys(Keys.RETURN)
+        photo.send_keys(TextFields.image2)
         photo.send_keys(Keys.RETURN)
         time.sleep(2)
 
@@ -110,9 +112,7 @@ class NewsPage(BasePage):
         create_news.click()
         time.sleep(5)
 
-
-
-        #cansel from create page
+        # cansel from create page
     # assert self.is_element_present(*NewsPageLocators.CANCEL_BUTTON), "cancel-button is not presented"
     # btn_cancel = self.browser.find_element(*NewsPageLocators.CANCEL_BUTTON)
     # btn_cancel.click()
