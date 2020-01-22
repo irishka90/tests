@@ -1,6 +1,8 @@
 import time
 import pytest
 from selenium import webdriver
+
+
 from tests.zabast_admin.base_page import BasePage, link
 from tests.zabast_admin.event_page import EventPage
 from tests.zabast_admin.news_page import NewsPage
@@ -16,7 +18,7 @@ class TestLoginFrom():
         print("\nquit browser..")
         browser.quit()
 
-    def test_log_out(self,browser):
+    def test_log_out(self, browser):
         page = BasePage(browser, link)
         page.open()
         page.should_be_login_form()
@@ -41,15 +43,15 @@ class TestLoginFrom():
         news_page.create_button()
         news_page.create_news()
 
-    def test_go_to_event_page(self,browser):
+    def test_go_to_event_page(self, browser):
         page = BasePage(browser, link)
         page.open()
         page.should_be_login_form()
         page.get_in()
-        event_page=EventPage(browser, link)
+        event_page = EventPage(browser, link)
         event_page.go_to_event_page()
 
-    def test_create_event(self,browser):
+    def test_create_event(self, browser):
         page = BasePage(browser, link)
         page.open()
         page.should_be_login_form()
@@ -59,7 +61,7 @@ class TestLoginFrom():
         event_page.create_button()
         event_page.create_event()
 
-    def test_change_page(self,browser):
+    def test_change_page(self, browser):
         page = BasePage(browser, link)
         page.open()
         page.should_be_login_form()
@@ -67,4 +69,25 @@ class TestLoginFrom():
         page.change_page()
         time.sleep(2)
 
+    def test_sorting(self,browser):
+        page = BasePage(browser, link)
+        page.open()
+        page.should_be_login_form()
+        page.get_in()
+        page.sort_creating_date()
 
+    def test_delete_last_news(self, browser):
+        page = BasePage(browser, link)
+        page.open()
+        page.should_be_login_form()
+        page.get_in()
+        page.sort_creating_date()
+        page.delete_last_news()
+
+    def test_take__last_pub_away(self, browser):
+        page = BasePage(browser, link)
+        page.open()
+        page.should_be_login_form()
+        page.get_in()
+        page.sort_creating_date()
+        page.take_pub_away()

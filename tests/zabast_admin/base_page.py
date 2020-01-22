@@ -7,6 +7,7 @@ link = "http://104.248.35.86/moderation/#/login"
 
 class BasePage():
 
+
     def __init__(self, browser, link, timeout=10):
         self.browser = browser
         self.link = link
@@ -54,9 +55,6 @@ class BasePage():
         one_page_back = self.browser.find_element(*BasePageLocators.CHOOSE_PAGE_3)
         one_page_back.click()
 
-
-
-
     def get_in(self, email="admin_tester@gmail.com", password="q1w2e3r4"):
         assert self.is_element_present(*BasePageLocators.LOGIN_INPUT), "Not found email input"
         email_input = self.browser.find_element(*BasePageLocators.LOGIN_INPUT)
@@ -68,3 +66,37 @@ class BasePage():
         button_submit = self.browser.find_element(*BasePageLocators.REG_SUBMIT)
         button_submit.click()
         time.sleep(7)
+
+    def sort_creating_date (self):
+        assert self.is_element_present(*BasePageLocators.DATE_SORTING)
+        sort =  self.browser.find_element(*BasePageLocators.DATE_SORTING)
+        sort.click()
+        sort = self.browser.find_element(*BasePageLocators.DATE_SORTING)
+        sort.click()
+        time.sleep(3)
+
+    def delete_last_news(self):
+        assert  self.is_element_present(*BasePageLocators.DROP_DOWN)
+        drop_down = self.browser.find_element(*BasePageLocators.DROP_DOWN)
+        drop_down.click()
+        assert self.is_element_present(*BasePageLocators.DELETE_NEWS)
+        del_news = self.browser.find_element(*BasePageLocators.DELETE_NEWS)
+        del_news.click()
+        assert self.is_element_present(*BasePageLocators.DELETE_NEWS_OK)
+        del_news_ok = self.browser.find_element(*BasePageLocators.DELETE_NEWS_OK)
+        del_news_ok.click()
+
+    def take_pub_away(self):
+        assert self.is_element_present(*BasePageLocators.DROP_DOWN)
+        drop_down = self.browser.find_element(*BasePageLocators.DROP_DOWN)
+        drop_down.click()
+        assert self.is_element_present(*BasePageLocators.TAKE_AWAY)
+        del_news = self.browser.find_element(*BasePageLocators.TAKE_AWAY)
+        del_news.click()
+        time.sleep(5)
+        assert self.is_element_present(*BasePageLocators.TAKE_AWAY_OK)
+        del_news_ok = self.browser.find_element(*BasePageLocators.TAKE_AWAY_OK)
+        del_news_ok.click()
+        time.sleep(8)
+
+

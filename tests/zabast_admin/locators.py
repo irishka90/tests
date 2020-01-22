@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from datetime import datetime
 
 class BasePageLocators():
   LOGIN_FORM = (By.CLASS_NAME, "loginForm")
@@ -11,6 +12,24 @@ class BasePageLocators():
   FORWARD_BUTTON = (By.XPATH, "/html/body/div/section/section/main/div[2]/div[7]/a")
   BACK_BUTTON = (By.CLASS_NAME, "basePagination__itemLink")
   CHOOSE_PAGE_3 = (By.XPATH, "//*[@id='app']/section/section/main/div[2]/div[4]/a")
+  DATE_SORTING =  (By.CLASS_NAME,"baseTable__cell__sortingIndicator")
+  DROP_DOWN = (By.CLASS_NAME, "dropdown__title")
+  DELETE_NEWS = (By.CLASS_NAME, "dropdown__list__actionWrapper")
+  DELETE_NEWS_OK = (By.CLASS_NAME,"button.modal__footerButton.--primary")
+  TAKE_AWAY = (By.CLASS_NAME, "dropdown__list__actionWrapper")
+  TAKE_AWAY_OK = (By.CLASS_NAME, "button.modal__footerButton.--primary")
+
+class TextFields():
+  date = datetime.today().strftime('%d-%m-%Y')
+  title_en = "What is Lorem Ipsum?"
+  content_en = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+  title_ru = "Что такое Lorem Ipsum?"
+  content_ru = "Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной рыбой для текстов на латинице с начала XVI века."
+  title_es = "¿Qué es Lorem Ipsum?"
+  content_es = "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500."
+  title_de = "Was ist Lorem Ipsum?"
+  content_de = "Lorem Ipsum ist ein einfacher Demo-Text für die Print- und Schriftindustrie. Lorem Ipsum ist in der Industrie bereits der Standard Demo-Text seit 1500."
+
 
 class NewsPageLocators():
   CREATE_BUTTON = (By.CLASS_NAME, "button.sectionHeader__action.--primary")
@@ -36,6 +55,7 @@ class NewsPageLocators():
   TAG = (By.CLASS_NAME, "new-tag")
   PHOTO_URL =(By.CLASS_NAME, "baseInputImageTag__input")
   CHECKBOX = (By.CLASS_NAME, "baseSwitch-w.baseFormField__control.--unchecked")
+  CREATE_NEWS_BUTTON = (By.CLASS_NAME, "button.modal__footerButton.--primary")
   CANCEL_BUTTON = (By.CLASS_NAME, "button.modal__footerButton")
 
 class EventPageLocators():
