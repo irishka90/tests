@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from tests.zabast_admin.base_page import BasePage
 from tests.zabast_admin.locators import NewsPageLocators, TextFields
+from tests.zabast_admin.locators import BasePageLocators
 
 
 class NewsPage(BasePage):
@@ -14,10 +15,13 @@ class NewsPage(BasePage):
         button_submit.click()
         time.sleep(3)
 
+    #   assert  self.is_element_present(*NewsPageLocators.CHOOSE_DATE), "impossible to go to create_news window"
+
     def create_news(self):
         assert self.is_element_present(*NewsPageLocators.CHOOSE_DATE), "chose-date area is not presented"
         date_area = self.browser.find_element(*NewsPageLocators.CHOOSE_DATE)
         date_area.send_keys(TextFields.date)
+        news_date1 = TextFields.date
         date_area.send_keys(Keys.RETURN)
 
         # 1 ru
@@ -111,8 +115,15 @@ class NewsPage(BasePage):
         self.browser.execute_script('return arguments[0].scrollIntoView (true);', create_news)
         create_news.click()
         time.sleep(5)
+        table = \
+        self.browser.find_element_by_class_name("baseTable__body").find_elements_by_class_name("baseTable__row")[
+            0].find_elements_by_class_name("baseTable__cell")[2].find_element_by_tag_name("span").text
 
-        # cansel from create page
+        print("date in table", table)
+        print("date news", news_date1)
+        assert news_date1 in table, "not equal date"
+
+    # cansel from create page
     # assert self.is_element_present(*NewsPageLocators.CANCEL_BUTTON), "cancel-button is not presented"
     # btn_cancel = self.browser.find_element(*NewsPageLocators.CANCEL_BUTTON)
     # btn_cancel.click()

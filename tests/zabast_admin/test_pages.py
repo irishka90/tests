@@ -17,6 +17,14 @@ class TestLoginFrom():
         print("\nquit browser..")
         browser.quit()
 
+    def test_go_to_news_page_from_login_page(self, browser):
+        page = BasePage(browser, link)
+        page.open()
+        page.should_be_login_form()
+        page.get_in()
+        time.sleep(3)
+
+
     def test_log_out(self, browser):
         page = BasePage(browser, link)
         page.open()
@@ -25,12 +33,6 @@ class TestLoginFrom():
         time.sleep(3)
         page.log_out()
 
-    def test_go_to_news_page_from_login_page(self, browser):
-        page = BasePage(browser, link)
-        page.open()
-        page.should_be_login_form()
-        page.get_in()
-        time.sleep(3)
 
     def test_create_news(self, browser):
         page = BasePage(browser, link)
@@ -65,6 +67,7 @@ class TestLoginFrom():
         page.open()
         page.should_be_login_form()
         page.get_in()
+        page.sort_creating_date()
         page.change_page()
         time.sleep(2)
 

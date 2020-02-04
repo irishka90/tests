@@ -12,6 +12,7 @@ class EventPage(BasePage):
         event = self.browser.find_element(*BasePageLocators.EVENT)
         event.click()
         time.sleep(3)
+        assert self.browser.current_url == "https://dev.zabastcom.org/moderation/#/events", "impossible to go to event page"
 
     def create_button(self):
         assert self.is_element_present(*EventPageLocators.CREATE_BUTTON), "Create-button is not presented"

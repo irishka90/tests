@@ -5,7 +5,7 @@ from selenium.common.exceptions import NoSuchElementException
 
 from tests.zabast_admin.locators import BasePageLocators
 
-link = "http://104.248.35.86/moderation/#/login"
+link = "https://dev.zabastcom.org/moderation/#/"
 
 
 class BasePage():
@@ -13,6 +13,7 @@ class BasePage():
     def __init__(self, browser, link, timeout=10):
         self.browser = browser
         self.link = link
+        self.browser.maximize_window()
         self.browser.implicitly_wait(timeout)
 
     def open(self):
@@ -31,7 +32,7 @@ class BasePage():
         self.should_be_login_form()
 
     def should_be_login_url(self):
-        assert self.browser.current_url == "http://104.248.35.86/moderation", \
+        assert self.browser.current_url == "https://dev.zabastcom.org/moderation/#/", \
             "link is not correct "
 
     def should_be_login_form(self):
@@ -44,15 +45,27 @@ class BasePage():
         get_out.click()
         out_button = self.browser.find_element(*BasePageLocators.OUT_BUTTON)
         out_button.click()
-        time.sleep(3)
+        time.sleep(10)
+
+    #  assert self.is_element_present(*BasePageLocators.LOGIN_INPUT), "Not found email input.impossible to log out." \
+    #                                                                                      " Can't go to login page"
 
     def change_page(self):
+        
+        nmbr1 = self.browser.find_element_by_class_name("baseTable__body").find_elements_by_class_name("baseTable__row")[
+            0].find_elements_by_class_name("baseTable__cell")[0].text
         assert self.is_element_present(*BasePageLocators.FORWARD_BUTTON), "Forward button not found"
         one_page_forward = self.browser.find_element(*BasePageLocators.FORWARD_BUTTON)
         one_page_forward.click()
+        
+        nmbr2 = self.browser.find_element_by_class_name("baseTable__body").find_elements_by_class_name("baseTable__row")[
+            0].find_elements_by_class_name("baseTable__cell")[0].text
+        assert nmbr1 != nmbr2, "page not changed to №2"
+
         assert self.is_element_present(*BasePageLocators.BACK_BUTTON), "Back button not found"
         one_page_back = self.browser.find_element(*BasePageLocators.BACK_BUTTON)
         one_page_back.click()
+
         assert self.is_element_present(*BasePageLocators.CHOOSE_PAGE_3), "page 3 button not found"
         one_page_back = self.browser.find_element(*BasePageLocators.CHOOSE_PAGE_3)
         one_page_back.click()
@@ -68,6 +81,7 @@ class BasePage():
         button_submit = self.browser.find_element(*BasePageLocators.REG_SUBMIT)
         button_submit.click()
         time.sleep(7)
+        assert self.browser.current_url == "https://dev.zabastcom.org/moderation/#/news", "impossible to get in"
 
     def sort_creating_date(self):
         assert self.is_element_present(*BasePageLocators.DATA_TABLE_SORTING)
