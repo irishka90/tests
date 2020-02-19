@@ -9,6 +9,7 @@ from tests.zabast_admin.locators import BasePageLocators
 
 
 class NewsPage(BasePage):
+
     def create_button(self):
         assert self.is_element_present(*NewsPageLocators.CREATE_BUTTON), "Create-button is not presented"
         button_submit = self.browser.find_element(*NewsPageLocators.CREATE_BUTTON)

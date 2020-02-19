@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93693591-30f6-44e7-a9d5-8c76fc2705cf" name="Default Changelist" comment="add registration tests">
+      <change afterPath="$PROJECT_DIR$/tests/zabast_admin/pytest.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/zabast_admin/base_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/zabast_admin/base_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/zabast_admin/event_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/zabast_admin/event_page.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/zabast_admin/news_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/zabast_admin/news_page.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/zabast_admin/test_pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/zabast_admin/test_pages.py" afterDir="false" />
     </list>
@@ -38,7 +38,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
-    <property name="last_opened_file_path" value="/usr/local/bin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/zabast_admin" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
@@ -52,11 +52,6 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tests/python-hight_level" />
-      <recent name="$PROJECT_DIR$/tests/stepik/zabast" />
-      <recent name="$PROJECT_DIR$/tests/stepik" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
       <recent name="$PROJECT_DIR$/tests/final_test" />
@@ -64,8 +59,14 @@
       <recent name="$PROJECT_DIR$/tests/stepik/zabast" />
       <recent name="$PROJECT_DIR$/tests/stepik/param" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/zabast_admin" />
+      <recent name="$PROJECT_DIR$/tests/python-hight_level" />
+      <recent name="$PROJECT_DIR$/tests/stepik/zabast" />
+      <recent name="$PROJECT_DIR$/tests/stepik" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for test_pages.TestLoginFrom.test_change_page">
+  <component name="RunManager" selected="Python tests.pytest for test_pages.TestLoginFrom.test_create_event">
     <configuration name="pytest for test_pages.TestLoginFrom.test_change_page" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="learn" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -111,7 +112,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_pages.TestLoginFrom.test_go_to_event_page" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_pages.TestLoginFrom.test_delete_last_news" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="learn" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -122,11 +123,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_pages.TestLoginFrom.test_go_to_event_page&quot;" />
+      <option name="_new_target" value="&quot;test_pages.TestLoginFrom.test_delete_last_news&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_pages.TestLoginFrom.test_sorting" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_pages.TestLoginFrom.test_log_out" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="learn" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -137,24 +138,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_pages.TestLoginFrom.test_sorting&quot;" />
+      <option name="_new_target" value="&quot;test_pages.TestLoginFrom.test_log_out&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_create_event" />
+      <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_delete_last_news" />
+      <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_log_out" />
       <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_create_news" />
-      <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_go_to_event_page" />
       <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_change_page" />
-      <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_sorting" />
+      <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_create_event" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_change_page" />
-        <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_sorting" />
-        <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_create_news" />
         <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_create_event" />
-        <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_go_to_event_page" />
+        <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_change_page" />
+        <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_delete_last_news" />
+        <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_log_out" />
+        <item itemvalue="Python tests.pytest for test_pages.TestLoginFrom.test_create_news" />
       </list>
     </recent_temporary>
   </component>
@@ -213,6 +214,10 @@
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
     <state x="447" y="211" width="1084" height="717" key="#com.intellij.execution.impl.EditConfigurationsDialog/58.27.1862.1053@58.27.1862.1053" timestamp="1577889606909" />
+    <state x="682" y="354" width="594" height="413" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582135134574">
+      <screen x="58" y="27" width="1862" height="1053" />
+    </state>
+    <state x="682" y="354" width="594" height="413" key="#com.intellij.fileTypes.FileTypeChooser/58.27.1862.1053@58.27.1862.1053" timestamp="1582135134574" />
     <state x="672" y="281" width="624" height="551" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1575399607052">
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
@@ -237,22 +242,22 @@
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
     <state x="772" y="314" width="424" height="491" key="FileChooserDialogImpl/58.27.1862.1053@58.27.1862.1053" timestamp="1577889757973" />
-    <state width="1839" height="427" key="GridCell.Tab.0.bottom" timestamp="1580843250423">
+    <state width="1839" height="427" key="GridCell.Tab.0.bottom" timestamp="1582135942308">
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
-    <state width="1839" height="427" key="GridCell.Tab.0.bottom/58.27.1862.1053@58.27.1862.1053" timestamp="1580843250423" />
-    <state width="1839" height="427" key="GridCell.Tab.0.center" timestamp="1580843250422">
+    <state width="1839" height="427" key="GridCell.Tab.0.bottom/58.27.1862.1053@58.27.1862.1053" timestamp="1582135942308" />
+    <state width="1839" height="427" key="GridCell.Tab.0.center" timestamp="1582135942307">
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
-    <state width="1839" height="427" key="GridCell.Tab.0.center/58.27.1862.1053@58.27.1862.1053" timestamp="1580843250422" />
-    <state width="1839" height="427" key="GridCell.Tab.0.left" timestamp="1580843250422">
+    <state width="1839" height="427" key="GridCell.Tab.0.center/58.27.1862.1053@58.27.1862.1053" timestamp="1582135942307" />
+    <state width="1839" height="427" key="GridCell.Tab.0.left" timestamp="1582135942306">
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
-    <state width="1839" height="427" key="GridCell.Tab.0.left/58.27.1862.1053@58.27.1862.1053" timestamp="1580843250422" />
-    <state width="1839" height="427" key="GridCell.Tab.0.right" timestamp="1580843250423">
+    <state width="1839" height="427" key="GridCell.Tab.0.left/58.27.1862.1053@58.27.1862.1053" timestamp="1582135942306" />
+    <state width="1839" height="427" key="GridCell.Tab.0.right" timestamp="1582135942308">
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
-    <state width="1839" height="427" key="GridCell.Tab.0.right/58.27.1862.1053@58.27.1862.1053" timestamp="1580843250423" />
+    <state width="1839" height="427" key="GridCell.Tab.0.right/58.27.1862.1053@58.27.1862.1053" timestamp="1582135942308" />
     <state width="1839" height="312" key="GridCell.Tab.1.bottom" timestamp="1579724490974">
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
@@ -277,6 +282,10 @@
       <screen x="58" y="27" width="1862" height="1053" />
     </state>
     <state x="645" y="380" key="com.intellij.ide.util.TipDialog/58.27.1862.1053@58.27.1862.1053" timestamp="1577885021355" />
+    <state x="653" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1582135106093">
+      <screen x="58" y="27" width="1862" height="1053" />
+    </state>
+    <state x="653" y="196" width="670" height="676" key="search.everywhere.popup/58.27.1862.1053@58.27.1862.1053" timestamp="1582135106093" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

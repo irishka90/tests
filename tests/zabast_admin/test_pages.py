@@ -17,79 +17,55 @@ class TestLoginFrom():
         print("\nquit browser..")
         browser.quit()
 
-    def test_go_to_news_page_from_login_page(self, browser):
+    @pytest.fixture(scope="function")
+    def log_in(self, browser):
         page = BasePage(browser, link)
         page.open()
         page.should_be_login_form()
         page.get_in()
         time.sleep(3)
+        return browser
 
+    @pytest.fixture(scope="function")
+    def sorting(self, log_in):
+        page = BasePage(log_in, link)
+        page.sort_creating_date()
+        return log_in
 
-    def test_log_out(self, browser):
-        page = BasePage(browser, link)
-        page.open()
-        page.should_be_login_form()
-        page.get_in()
-        time.sleep(3)
+    @pytest.mark.users
+    def test_log_out(self, log_in):
+        page = BasePage(log_in, link)
         page.log_out()
 
-
-    def test_create_news(self, browser):
-        page = BasePage(browser, link)
-        page.open()
-        page.should_be_login_form()
-        page.get_in()
-        time.sleep(1)
-        news_page = NewsPage(browser, browser.current_url)
+    @pytest.mark.news
+    def test_create_news(self, log_in):
+        news_page = NewsPage(log_in, log_in.current_url)
         news_page.create_button()
         news_page.create_news()
 
-    def test_go_to_event_page(self, browser):
-        page = BasePage(browser, link)
-        page.open()
-        page.should_be_login_form()
-        page.get_in()
-        event_page = EventPage(browser, link)
+    @pytest.mark.base
+    def test_go_to_event_page(self, log_in):
+        event_page = EventPage(log_in, link)
         event_page.go_to_event_page()
 
-    def test_create_event(self, browser):
-        page = BasePage(browser, link)
-        page.open()
-        page.should_be_login_form()
-        page.get_in()
-        event_page = EventPage(browser, link)
+    @pytest.mark.events
+    def test_create_event(self, log_in):
+        event_page = EventPage(log_in, link)
         event_page.go_to_event_page()
         event_page.create_button()
         event_page.create_event()
 
-    def test_change_page(self, browser):
-        page = BasePage(browser, link)
-        page.open()
-        page.should_be_login_form()
-        page.get_in()
-        page.sort_creating_date()
+    @pytest.mark.base
+    def test_change_page(self, sorting):
+        page = BasePage(sorting, link)
         page.change_page()
-        time.sleep(2)
 
-    def test_sorting(self, browser):
-        page = BasePage(browser, link)
-        page.open()
-        page.should_be_login_form()
-        page.get_in()
-        page.sort_creating_date()
-
-    def test_delete_last_news(self, browser):
-        page = BasePage(browser, link)
-        page.open()
-        page.should_be_login_form()
-        page.get_in()
-        page.sort_creating_date()
+    @pytest.mark.news
+    def test_delete_last_news(self, sorting):
+        page = BasePage(sorting, link)
         page.delete_last_news()
 
-    def test_take__last_pub_away(self, browser):
-        page = BasePage(browser, link)
-        page.open()
-        page.should_be_login_form()
-        page.get_in()
-        page.sort_creating_date()
+    @pytest.mark.news
+    def test_take__last_pub_away(self, sorting):
+        page = BasePage(sorting, link)
         page.take_pub_away()

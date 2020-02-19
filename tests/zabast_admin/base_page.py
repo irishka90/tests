@@ -43,32 +43,47 @@ class BasePage():
         assert self.is_element_present(*BasePageLocators.LOG_OUT), "Log-out button not found"
         get_out = self.browser.find_element(*BasePageLocators.LOG_OUT)
         get_out.click()
+        time.sleep(2)
         out_button = self.browser.find_element(*BasePageLocators.OUT_BUTTON)
         out_button.click()
-        time.sleep(10)
-
-    #  assert self.is_element_present(*BasePageLocators.LOGIN_INPUT), "Not found email input.impossible to log out." \
-    #                                                                                      " Can't go to login page"
+        time.sleep(1)
+        assert self.is_element_present(*BasePageLocators.LOGIN_FORM), "Not found email input.impossible to log out."
 
     def change_page(self):
-        
-        nmbr1 = self.browser.find_element_by_class_name("baseTable__body").find_elements_by_class_name("baseTable__row")[
-            0].find_elements_by_class_name("baseTable__cell")[0].text
+
+        nmbr1 = self.browser.find_element_by_class_name("baseTable__body") \
+            .find_elements_by_class_name("baseTable__row")[0] \
+            .find_elements_by_class_name("baseTable__cell")[0].text
         assert self.is_element_present(*BasePageLocators.FORWARD_BUTTON), "Forward button not found"
         one_page_forward = self.browser.find_element(*BasePageLocators.FORWARD_BUTTON)
         one_page_forward.click()
-        
-        nmbr2 = self.browser.find_element_by_class_name("baseTable__body").find_elements_by_class_name("baseTable__row")[
-            0].find_elements_by_class_name("baseTable__cell")[0].text
+
+        nmbr2 = self.browser.find_element_by_class_name("baseTable__body") \
+            .find_elements_by_class_name("baseTable__row")[0] \
+            .find_elements_by_class_name("baseTable__cell")[0].text
+        print("1st ID on page 1:", nmbr1)
+        print("1st ID on page 2:", nmbr2)
         assert nmbr1 != nmbr2, "page not changed to №2"
 
         assert self.is_element_present(*BasePageLocators.BACK_BUTTON), "Back button not found"
         one_page_back = self.browser.find_element(*BasePageLocators.BACK_BUTTON)
         one_page_back.click()
+        nmbr3 = self.browser.find_element_by_class_name("baseTable__body") \
+            .find_elements_by_class_name("baseTable__row")[0] \
+            .find_elements_by_class_name("baseTable__cell")[0].text
+        print("1st ID on page 2:", nmbr2)
+        print("1st ID on page 1:", nmbr3)
+        assert nmbr3 != nmbr2, "page not changed to №1"
 
         assert self.is_element_present(*BasePageLocators.CHOOSE_PAGE_3), "page 3 button not found"
         one_page_back = self.browser.find_element(*BasePageLocators.CHOOSE_PAGE_3)
         one_page_back.click()
+        nmbr4 = self.browser.find_element_by_class_name("baseTable__body") \
+            .find_elements_by_class_name("baseTable__row")[0] \
+            .find_elements_by_class_name("baseTable__cell")[0].text
+        print("1st ID on page 1:", nmbr3)
+        print("1st ID on page 3:", nmbr4)
+        assert nmbr3 != nmbr4, "page not changed to №3"
 
     def get_in(self, email="admin_tester@gmail.com", password="q1w2e3r4"):
         assert self.is_element_present(*BasePageLocators.LOGIN_INPUT), "Not found email input"
@@ -118,25 +133,54 @@ class BasePage():
             assert timeFirst >= timeSecond, "No sort DESC mode"
 
     def delete_last_news(self):
+        first_id_on_page = self.browser.find_element_by_class_name("baseTable__body") \
+            .find_elements_by_class_name("baseTable__row")[0] \
+            .find_elements_by_class_name("baseTable__cell")[0].text
+        second_id_on_page = self.browser.find_element_by_class_name("baseTable__body") \
+            .find_elements_by_class_name("baseTable__row")[1] \
+            .find_elements_by_class_name("baseTable__cell")[0].text
         assert self.is_element_present(*BasePageLocators.DROP_DOWN)
         drop_down = self.browser.find_element(*BasePageLocators.DROP_DOWN)
         drop_down.click()
+        time.sleep(2)
         assert self.is_element_present(*BasePageLocators.DELETE_NEWS)
         del_news = self.browser.find_element(*BasePageLocators.DELETE_NEWS)
+        time.sleep(2)
         del_news.click()
+        time.sleep(3)
         assert self.is_element_present(*BasePageLocators.DELETE_NEWS_OK)
         del_news_ok = self.browser.find_element(*BasePageLocators.DELETE_NEWS_OK)
+        time.sleep(2)
         del_news_ok.click()
+        time.sleep(3)
+        first_id_on_page_after_del = self.browser.find_element_by_class_name("baseTable__body") \
+            .find_elements_by_class_name("baseTable__row")[0] \
+            .find_elements_by_class_name("baseTable__cell")[0].text
 
-    def take_pub_away(self):
-        assert self.is_element_present(*BasePageLocators.DROP_DOWN)
-        drop_down = self.browser.find_element(*BasePageLocators.DROP_DOWN)
-        drop_down.click()
-        assert self.is_element_present(*BasePageLocators.TAKE_AWAY)
-        del_news = self.browser.find_element(*BasePageLocators.TAKE_AWAY)
-        del_news.click()
-        time.sleep(5)
-        assert self.is_element_present(*BasePageLocators.TAKE_AWAY_OK)
-        del_news_ok = self.browser.find_element(*BasePageLocators.TAKE_AWAY_OK)
-        del_news_ok.click()
-        time.sleep(8)
+        print(first_id_on_page)
+        print(second_id_on_page)
+        print(first_id_on_page_after_del)
+        assert first_id_on_page_after_del == second_id_on_page, "not successfull remove"
+
+
+def take_pub_away(self):
+    icon_check = self.browser.find_element_by_class_name("baseTable__body") \
+        .find_elements_by_class_name("baseTable__row")[0] \
+        .find_elements_by_class_name("baseTable__cell")[4].find_element_by_class_name(
+        "publicationStatusCell__icon.--check")
+    assert self.is_element_present(*BasePageLocators.DROP_DOWN)
+    drop_down = self.browser.find_element(*BasePageLocators.DROP_DOWN)
+    drop_down.click()
+    assert self.is_element_present(*BasePageLocators.TAKE_AWAY)
+    del_news = self.browser.find_element(*BasePageLocators.TAKE_AWAY)
+    del_news.click()
+    time.sleep(5)
+    assert self.is_element_present(*BasePageLocators.TAKE_AWAY_OK)
+    take_away_ok = self.browser.find_element(*BasePageLocators.TAKE_AWAY_OK)
+    take_away_ok.click()
+    icon_close = self.browser.find_element_by_class_name("baseTable__body") \
+        .find_elements_by_class_name("baseTable__row")[0] \
+        .find_elements_by_class_name("baseTable__cell")[4] \
+        .find_element_by_class_name("publicationStatusCell__icon.--close")
+    assert icon_check != icon_close, "publication not taken away"
+    time.sleep(5)
