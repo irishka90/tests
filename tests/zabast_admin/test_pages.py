@@ -66,6 +66,6 @@ class TestLoginFrom():
         page.delete_last_news()
 
     @pytest.mark.news
-    def test_take__last_pub_away(self, sorting):
+    def test_take_last_pub_away(self, sorting):
         page = BasePage(sorting, link)
         page.take_pub_away()

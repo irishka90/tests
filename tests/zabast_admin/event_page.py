@@ -21,7 +21,6 @@ class EventPage(BasePage):
         time.sleep(3)
 
     def create_event(self):
-       # time.sleep(2000)
 
         assert self.is_element_present(*EventPageLocators.TYPE_EVENT), "type-event area is not presented"
         type_ev = self.browser.find_element(*EventPageLocators.TYPE_EVENT)

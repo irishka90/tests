@@ -95,7 +95,7 @@ class BasePage():
         assert self.is_element_present(*BasePageLocators.REG_SUBMIT), "Not found button registration"
         button_submit = self.browser.find_element(*BasePageLocators.REG_SUBMIT)
         button_submit.click()
-        time.sleep(7)
+        time.sleep(3)
         assert self.browser.current_url == "https://dev.zabastcom.org/moderation/#/news", "impossible to get in"
 
     def sort_creating_date(self):
@@ -162,25 +162,26 @@ class BasePage():
         print(first_id_on_page_after_del)
         assert first_id_on_page_after_del == second_id_on_page, "not successfull remove"
 
-
-def take_pub_away(self):
-    icon_check = self.browser.find_element_by_class_name("baseTable__body") \
-        .find_elements_by_class_name("baseTable__row")[0] \
-        .find_elements_by_class_name("baseTable__cell")[4].find_element_by_class_name(
-        "publicationStatusCell__icon.--check")
-    assert self.is_element_present(*BasePageLocators.DROP_DOWN)
-    drop_down = self.browser.find_element(*BasePageLocators.DROP_DOWN)
-    drop_down.click()
-    assert self.is_element_present(*BasePageLocators.TAKE_AWAY)
-    del_news = self.browser.find_element(*BasePageLocators.TAKE_AWAY)
-    del_news.click()
-    time.sleep(5)
-    assert self.is_element_present(*BasePageLocators.TAKE_AWAY_OK)
-    take_away_ok = self.browser.find_element(*BasePageLocators.TAKE_AWAY_OK)
-    take_away_ok.click()
-    icon_close = self.browser.find_element_by_class_name("baseTable__body") \
-        .find_elements_by_class_name("baseTable__row")[0] \
-        .find_elements_by_class_name("baseTable__cell")[4] \
-        .find_element_by_class_name("publicationStatusCell__icon.--close")
-    assert icon_check != icon_close, "publication not taken away"
-    time.sleep(5)
+    def take_pub_away(self):
+        icon_check = self.browser.find_element_by_class_name("baseTable__body") \
+            .find_elements_by_class_name("baseTable__row")[0] \
+            .find_elements_by_class_name("baseTable__cell")[4] \
+            .find_element_by_class_name("publicationStatusCell__icon.--check")
+        assert self.is_element_present(*BasePageLocators.DROP_DOWN)
+        drop_down = self.browser.find_element(*BasePageLocators.DROP_DOWN)
+        time.sleep(1)
+        drop_down.click()
+        assert self.is_element_present(*BasePageLocators.TAKE_AWAY)
+        del_news = self.browser.find_element(*BasePageLocators.TAKE_AWAY)
+        time.sleep(1)
+        del_news.click()
+        time.sleep(3)
+        assert self.is_element_present(*BasePageLocators.TAKE_AWAY_OK)
+        take_away_ok = self.browser.find_element(*BasePageLocators.TAKE_AWAY_OK)
+        time.sleep(1)
+        take_away_ok.click()
+        icon_close = self.browser.find_element_by_class_name("baseTable__body") \
+            .find_elements_by_class_name("baseTable__row")[0] \
+            .find_elements_by_class_name("baseTable__cell")[4] \
+            .find_element_by_class_name("publicationStatusCell__icon.--close")
+        assert icon_check != icon_close, "publication not taken away"
