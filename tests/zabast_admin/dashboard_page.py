@@ -1,8 +1,11 @@
 import datetime
 import time
 
+from selenium.webdriver.common.by import By
+
 from tests.zabast_admin.base_page import BasePage
 from tests.zabast_admin.locators import BasePageLocators
+
 
 class DashboardPage(BasePage):
 
@@ -86,15 +89,13 @@ class DashboardPage(BasePage):
         assert self.is_element_present(*BasePageLocators.DROP_DOWN)
         drop_down = self.browser.find_element(*BasePageLocators.DROP_DOWN)
         drop_down.click()
-        time.sleep(2)
+        time.sleep(1)
         assert self.is_element_present(*BasePageLocators.DELETE_NEWS)
         del_news = self.browser.find_element(*BasePageLocators.DELETE_NEWS)
-        time.sleep(2)
         del_news.click()
-        time.sleep(3)
+        time.sleep(1)
         assert self.is_element_present(*BasePageLocators.DELETE_NEWS_OK)
         del_news_ok = self.browser.find_element(*BasePageLocators.DELETE_NEWS_OK)
-        time.sleep(2)
         del_news_ok.click()
         time.sleep(3)
         first_id_on_page_after_del = self.browser.find_element_by_class_name("baseTable__body") \
@@ -107,10 +108,12 @@ class DashboardPage(BasePage):
         assert first_id_on_page_after_del == second_id_on_page, "not successfull remove"
 
     def take_pub_away(self):
-        icon_check = self.browser.find_element_by_class_name("baseTable__body") \
+
+        status = self.browser.find_element_by_class_name("baseTable__body") \
             .find_elements_by_class_name("baseTable__row")[0] \
             .find_elements_by_class_name("baseTable__cell")[4] \
-            .find_element_by_class_name("publicationStatusCell__icon.--check")
+            .is_element_present(By.CLASS_NAME, "publicationStatusCell__icon.--close")
+
         assert self.is_element_present(*BasePageLocators.DROP_DOWN)
         drop_down = self.browser.find_element(*BasePageLocators.DROP_DOWN)
         time.sleep(1)
@@ -124,8 +127,10 @@ class DashboardPage(BasePage):
         take_away_ok = self.browser.find_element(*BasePageLocators.TAKE_AWAY_OK)
         time.sleep(1)
         take_away_ok.click()
-        icon_close = self.browser.find_element_by_class_name("baseTable__body") \
+
+        status_changed = self.browser.find_element_by_class_name("baseTable__body") \
             .find_elements_by_class_name("baseTable__row")[0] \
             .find_elements_by_class_name("baseTable__cell")[4] \
-            .find_element_by_class_name("publicationStatusCell__icon.--close")
-        assert icon_check != icon_close, "publication not taken away"
+            .is_element_present(By.CLASS_NAME, "publicationStatusCell__icon.--close")
+
+        assert status != status_changed, "publication not taken away"
