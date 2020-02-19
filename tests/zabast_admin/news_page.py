@@ -3,12 +3,12 @@ from datetime import datetime
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from tests.zabast_admin.base_page import BasePage
+from tests.zabast_admin.dashboard_page import DashboardPage
 from tests.zabast_admin.locators import NewsPageLocators, TextFields
 from tests.zabast_admin.locators import BasePageLocators
 
 
-class NewsPage(BasePage):
+class NewsPage(DashboardPage):
 
     def create_button(self):
         assert self.is_element_present(*NewsPageLocators.CREATE_BUTTON), "Create-button is not presented"

@@ -5,6 +5,7 @@ from selenium import webdriver
 from tests.zabast_admin.base_page import BasePage, link
 from tests.zabast_admin.event_page import EventPage
 from tests.zabast_admin.news_page import NewsPage
+from tests.zabast_admin.dashboard_page import DashboardPage
 
 
 class TestLoginFrom():
@@ -28,7 +29,7 @@ class TestLoginFrom():
 
     @pytest.fixture(scope="function")
     def sorting(self, log_in):
-        page = BasePage(log_in, link)
+        page = DashboardPage(log_in, link)
         page.sort_creating_date()
         return log_in
 
@@ -57,15 +58,15 @@ class TestLoginFrom():
 
     @pytest.mark.base
     def test_change_page(self, sorting):
-        page = BasePage(sorting, link)
+        page = DashboardPage(sorting, link)
         page.change_page()
 
     @pytest.mark.news
     def test_delete_last_news(self, sorting):
-        page = BasePage(sorting, link)
+        page = DashboardPage(sorting, link)
         page.delete_last_news()
 
     @pytest.mark.news
     def test_take_last_pub_away(self, sorting):
-        page = BasePage(sorting, link)
+        page = DashboardPage(sorting, link)
         page.take_pub_away()

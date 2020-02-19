@@ -2,11 +2,11 @@ import time
 
 from selenium.webdriver.common.keys import Keys
 
-from tests.zabast_admin.base_page import BasePage
+from tests.zabast_admin.dashboard_page import DashboardPage
 from tests.zabast_admin.locators import NewsPageLocators, BasePageLocators, EventPageLocators
 
 
-class EventPage(BasePage):
+class EventPage(DashboardPage):
     def go_to_event_page(self):
         assert self.is_element_present(*BasePageLocators.EVENT), "Event is not presented"
         event = self.browser.find_element(*BasePageLocators.EVENT)
