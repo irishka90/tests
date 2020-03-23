@@ -19,7 +19,7 @@ class TestLoginFrom():
         browser.quit()
 
     @pytest.fixture(scope="function")
-    def log_in(self, browser):
+    def test_log_in(self, browser):
         page = BasePage(browser, link)
         page.open()
         page.should_be_login_form()
