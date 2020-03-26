@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class BasePageLocators():
@@ -22,23 +22,36 @@ class BasePageLocators():
     DELETE_NEWS_OK = (By.CLASS_NAME, "button.modal__footerButton.--primary")
     TAKE_AWAY = (By.CLASS_NAME, "dropdown__list__actionWrapper")
     TAKE_AWAY_OK = (By.CLASS_NAME, "button.modal__footerButton.--primary")
+    CHANGE_NEWS = (By.XPATH, "/html/body/div/section/section/main/div[1]/div/div[2]/div[1]/div[6]/div/ul/li[2]")
 
 
 class TextFields():
     date = datetime.today().strftime('%d-%m-%Y')
+    yesterday = "12-12-2012"
     title_en = "What is Lorem Ipsum?"
     content_en = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+    title_en_2 = "News in english"
+    content_en_2 = "Text in english"
     title_ru = "Что такое Lorem Ipsum?"
     content_ru = "Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной рыбой для текстов на латинице с начала XVI века."
+    title_ru_2 ="Новость на русском"
+    content_ru_2 = "Текст новости на русском"
     title_es = "¿Qué es Lorem Ipsum?"
     content_es = "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500."
+    title_es_2 = "Noticias en español"
+    content_es_2 ="Noticias de texto en español"
     title_de = "Was ist Lorem Ipsum?"
     content_de = "Lorem Ipsum ist ein einfacher Demo-Text für die Print- und Schriftindustrie. Lorem Ipsum ist in der Industrie bereits der Standard Demo-Text seit 1500."
+    title_de_2 = "Deutsche Nachrichten"
+    content_de_2 = "Deutscher Nachrichtentext"
     tag_1 = "Lorem"
     tag_2 = "Ipsum"
+    tag_new = "new tag"
     url_source = "https://strikeapi2.herokuapp.com/"
     image = "https://picsum.photos/600/300"
     image2 = "https://picsum.photos/700/300"
+    video_url = "https://youtu.be/IrZAc3Dsfkk"
+
 
 class NewsPageLocators():
     CREATE_BUTTON = (By.CLASS_NAME, "button.sectionHeader__action.--primary")
@@ -62,10 +75,17 @@ class NewsPageLocators():
     DESCRIPTION_4 = (By.NAME, "contentDe")
     SOURSE_LINK = (By.NAME, "sourceLink")
     TAG = (By.CLASS_NAME, "new-tag")
-    PHOTO_URL = (By.CLASS_NAME, "baseInputImageTag__input")
+    TAG_NEW = (By.CLASS_NAME, "vue-input-tag-wrapper.baseFormField__control")
+    PHOTO_URL = (By.XPATH, '/html/body/div/div/div/div/div[2]/div/div[2]/form/div[5]/div/div/input')
     CHECKBOX = (By.CLASS_NAME, "baseSwitch-w.baseFormField__control.--unchecked")
     CREATE_NEWS_BUTTON = (By.CLASS_NAME, "button.modal__footerButton.--primary")
     CANCEL_BUTTON = (By.CLASS_NAME, "button.modal__footerButton")
+    VIDEO_ADD = (By.CLASS_NAME, "button.videoInput__button")
+    VIDEO_ADD_WINDOW = (By.CLASS_NAME, "v--modal-box.v--modal")
+    ADD_URL = (By.CLASS_NAME, "baseInput.baseFormField__control.--invalid")
+    VIDEO_TYPE = (By.XPATH, "/html/body/div/div/div[2]/div/div[2]/div/div[2]/form/div[2]/div/div/div/div[1]")
+    YOUTUBE = (By.CLASS_NAME, "multiselect__option.multiselect__option--highlight")
+    VIDEO_ADD_BUTTON = (By.CLASS_NAME, "button.modal__footerButton.--primary")
 
 
 class EventPageLocators():

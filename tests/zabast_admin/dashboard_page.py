@@ -2,9 +2,10 @@ import datetime
 import time
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 from tests.zabast_admin.base_page import BasePage
-from tests.zabast_admin.locators import BasePageLocators
+from tests.zabast_admin.locators import BasePageLocators, NewsPageLocators, TextFields
 
 
 class DashboardPage(BasePage):
@@ -134,3 +135,148 @@ class DashboardPage(BasePage):
             .is_element_present(By.CLASS_NAME, "publicationStatusCell__icon.--close")
 
         assert status != status_changed, "publication not taken away"
+
+    def edit_last_news(self):
+        assert self.is_element_present(*BasePageLocators.DROP_DOWN)
+        drop_down = self.browser.find_element(*BasePageLocators.DROP_DOWN)
+        drop_down.click()
+        time.sleep(1)
+        assert self.is_element_present(*BasePageLocators.CHANGE_NEWS)
+        change_news = self.browser.find_element(*BasePageLocators.CHANGE_NEWS)
+        time.sleep(1)
+        change_news.click()
+        time.sleep(3)
+
+        # замена даты
+        assert self.is_element_present(*NewsPageLocators.CHOOSE_DATE), "chose-date area is not presented"
+        date_area = self.browser.find_element(*NewsPageLocators.CHOOSE_DATE)
+        date_area.clear()
+        save_date = TextFields.yesterday
+        date_area.send_keys(save_date)
+        date_area.send_keys(Keys.RETURN)
+
+        # замена заголовок-текст
+        # 1 ru
+        assert self.is_element_present(*NewsPageLocators.TITLE_1), "Title area is not presented"
+        title_area = self.browser.find_element(*NewsPageLocators.TITLE_1)
+        title_area.clear()
+        ru_title_2 = TextFields.title_ru_2
+        title_area.send_keys(ru_title_2)
+        time.sleep(2)
+        assert self.is_element_present(*NewsPageLocators.DESCRIPTION_1), "Content area is not presented"
+        content_area = self.browser.find_element(*NewsPageLocators.DESCRIPTION_1)
+        content_area.clear()
+        ru_content_2 = TextFields.content_ru_2
+        content_area.send_keys(ru_content_2)
+        time.sleep(2)
+
+        # 2 en
+        assert self.is_element_present(*NewsPageLocators.TITLE_2), "Title area is not presented"
+        title_area = self.browser.find_element(*NewsPageLocators.TITLE_2)
+        title_area.clear()
+        en_title_2 = TextFields.title_en_2
+        title_area.send_keys(en_title_2)
+        time.sleep(2)
+        assert self.is_element_present(*NewsPageLocators.DESCRIPTION_2), "Content area is not presented"
+        content_area = self.browser.find_element(*NewsPageLocators.DESCRIPTION_2)
+        content_area.clear()
+        en_content_2 = TextFields.content_en_2
+        content_area.send_keys(en_content_2)
+        time.sleep(2)
+
+        # 3 es
+        assert self.is_element_present(*NewsPageLocators.TITLE_3), "Title area is not presented"
+        title_area = self.browser.find_element(*NewsPageLocators.TITLE_3)
+        title_area.clear()
+        es_title_2 = TextFields.title_es_2
+        title_area.send_keys(es_title_2)
+        time.sleep(2)
+        assert self.is_element_present(*NewsPageLocators.DESCRIPTION_3), "Content area is not presented"
+        content_area = self.browser.find_element(*NewsPageLocators.DESCRIPTION_3)
+        content_area.clear()
+        es_content_2 = TextFields.content_es_2
+        content_area.send_keys(es_content_2)
+        time.sleep(2)
+
+        # 4 de
+        assert self.is_element_present(*NewsPageLocators.TITLE_4), "Title area is not presented"
+        title_area = self.browser.find_element(*NewsPageLocators.TITLE_4)
+        title_area.clear()
+        de_title_2 = TextFields.title_de_2
+        title_area.send_keys(de_title_2)
+        time.sleep(2)
+        assert self.is_element_present(*NewsPageLocators.DESCRIPTION_4), "Content area is not presented"
+        content_area = self.browser.find_element(*NewsPageLocators.DESCRIPTION_4)
+        content_area.clear()
+        de_content_2 = TextFields.content_de_2
+        content_area.send_keys(de_content_2)
+        time.sleep(2)
+
+        # замена тэга
+        assert self.is_element_present(*NewsPageLocators.TAG), "Tag area is not presented"
+        tag_area = self.browser.find_element(*NewsPageLocators.TAG)
+
+        tag_new = TextFields.tag_new
+        tag_area.send_keys(tag_new)
+        tag_area.send_keys(Keys.RETURN)
+
+        assert self.is_element_present(*NewsPageLocators.CREATE_NEWS_BUTTON), "create button is not presented"
+        create_news = self.browser.find_element(*NewsPageLocators.CREATE_NEWS_BUTTON)
+        self.browser.execute_script('return arguments[0].scrollIntoView (true);', create_news)
+        create_news.click()
+        time.sleep(5)
+
+        assert self.is_element_present(*BasePageLocators.DROP_DOWN)
+        drop_down = self.browser.find_element(*BasePageLocators.DROP_DOWN)
+        drop_down.click()
+        time.sleep(1)
+        assert self.is_element_present(*BasePageLocators.CHANGE_NEWS)
+        change_news = self.browser.find_element(*BasePageLocators.CHANGE_NEWS)
+        time.sleep(1)
+        change_news.click()
+        time.sleep(3)
+
+        # проверка даты
+        assert self.is_element_present(*NewsPageLocators.CHOOSE_DATE), "chose-date area is not presented"
+        date_area = self.browser.find_element(*NewsPageLocators.CHOOSE_DATE)
+        assert date_area.get_attribute('value') == save_date, "Not equal dates {} {}".format(
+            date_area.get_attribute('value'), save_date)
+
+        # Проверка заголовок-текст
+        assert self.is_element_present(*NewsPageLocators.TITLE_1), "Title area is not presented"
+        title_ru_area = self.browser.find_element(*NewsPageLocators.TITLE_1).get_attribute('value')
+        assert ru_title_2 == title_ru_area, "Not equal ru_titles 1{} 2{}".format(ru_title_2, title_ru_area)
+        assert self.is_element_present(*NewsPageLocators.DESCRIPTION_1), "Content area is not presented"
+        content_ru_area = self.browser.find_element(*NewsPageLocators.DESCRIPTION_1).get_attribute('value')
+        assert ru_content_2 == content_ru_area, "Not equal ru_content 1{} 2{}".format(ru_content_2, content_ru_area)
+
+        assert self.is_element_present(*NewsPageLocators.TITLE_2), "Title area is not presented"
+        title_en_area = self.browser.find_element(*NewsPageLocators.TITLE_2).get_attribute('value')
+        assert en_title_2 == title_en_area, "Not equal en_titles 1{} 2{}".format(en_title_2, title_en_area)
+        assert self.is_element_present(*NewsPageLocators.DESCRIPTION_2), "Content area is not presented"
+        content_en_area = self.browser.find_element(*NewsPageLocators.DESCRIPTION_2).get_attribute('value')
+        assert en_content_2 == content_en_area, "Not equal en_content 1{} 2{}".format(es_content_2, content_en_area)
+
+        assert self.is_element_present(*NewsPageLocators.TITLE_3), "Title area is not presented"
+        title_es_area = self.browser.find_element(*NewsPageLocators.TITLE_3).get_attribute('value')
+        assert es_title_2 == title_es_area, "Not equal es_titles 1{} 2{}".format(en_title_2, title_es_area)
+        assert self.is_element_present(*NewsPageLocators.DESCRIPTION_3), "Content area is not presented"
+        content_es_area = self.browser.find_element(*NewsPageLocators.DESCRIPTION_3).get_attribute('value')
+        assert es_content_2 == content_es_area, "Not equal es_content 1{} 2{}".format(es_content_2, content_es_area)
+
+        assert self.is_element_present(*NewsPageLocators.TITLE_4), "Title area is not presented"
+        title_de_area = self.browser.find_element(*NewsPageLocators.TITLE_4).get_attribute('value')
+        assert de_title_2 == title_de_area, "Not equal de_titles 1{} 2{}".format(de_title_2, title_de_area)
+        assert self.is_element_present(*NewsPageLocators.DESCRIPTION_4), "Content area is not presented"
+        content_de_area = self.browser.find_element(*NewsPageLocators.DESCRIPTION_4).get_attribute('value')
+        assert de_content_2 == content_de_area, "Not equal de_content 1{} 2{}".format(de_content_2, content_de_area)
+
+        # проверка тега
+        assert self.is_element_present(*NewsPageLocators.TAG_NEW), "Tag area is not presented"
+        tag_area1 = self.browser.find_element(*NewsPageLocators.TAG_NEW).find_element(By.XPATH,"/html/body/div/div/div/div/div[2]/div/div[2]/form/div[7]/div/div/span[1]/span").text
+        tag_area2 = self.browser.find_element(*NewsPageLocators.TAG_NEW).find_element(By.XPATH,
+                                                                                  "/html/body/div/div/div/div/div[2]/div/div[2]/form/div[7]/div/div/span[2]/span").text
+        tag_area3 = self.browser.find_element(*NewsPageLocators.TAG_NEW).find_element(By.XPATH,
+                                                                                  "/html/body/div/div/div/div/div[2]/div/div[2]/form/div[7]/div/div/span[3]/span").text
+
+        assert tag_new in tag_area1+tag_area2+tag_area3, "tag new {} is not in 1{} 2{} 3{}".format(tag_new, tag_area1, tag_area2, tag_area3)

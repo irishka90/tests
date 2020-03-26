@@ -19,7 +19,7 @@ class TestLoginFrom():
         browser.quit()
 
     @pytest.fixture(scope="function")
-    def test_log_in(self, browser):
+    def log_in(self, browser):
         page = BasePage(browser, link)
         page.open()
         page.should_be_login_form()
@@ -70,3 +70,10 @@ class TestLoginFrom():
     def test_take_last_pub_away(self, sorting):
         page = DashboardPage(sorting, link)
         page.take_pub_away()
+
+    @pytest.mark.news
+    def test_edit_news(self, log_in, sorting):
+        page = DashboardPage(sorting,link)
+        page.edit_last_news()
+
+
